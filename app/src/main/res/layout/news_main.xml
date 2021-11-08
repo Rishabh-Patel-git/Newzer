@@ -11,7 +11,7 @@
         android:id="@+id/toolbar_view"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#ffffff"
+        android:background="#EDF1F4"
         app:title="News"
         app:titleTextColor="#EC1C1C"
 

@@ -22,7 +22,7 @@ public class HomeFragment extends Fragment {
     private SwipeRefreshLayout mSwipe;
     private ArrayList<NewsClass> mNews;
     private ProgressBar indicator;
-    private final String HOME_URL = "https://newsapi.org/v2/top-headlines?country=in&apiKey=98d961fbf71e4da4a4d72cc957d9cea0";
+    private final String HOME_URL = " https://newsapi.org/v2/top-headlines?country=in&apiKey=98d961fbf71e4da4a4d72cc957d9cea0";
     private String s = "";
 
     @Nullable

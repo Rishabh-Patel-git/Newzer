@@ -2,12 +2,12 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="250dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="100dp"
     android:layout_margin="5dp"
-    android:id="@+id/card_view">
+    app:cardCornerRadius="8dp"
+    app:cardElevation="100dp">
 
 
     <LinearLayout
@@ -24,7 +24,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:padding="10dp"
-            android:textColor="@color/black"
+            android:textColor="#000000"
             android:textSize="15sp"
             android:textStyle="bold"
             tool:text="Title" />
@@ -33,27 +33,34 @@
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_marginTop="10dp"
-            android:padding="6dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="6dp">
 
             <TextView
                 android:id="@+id/description_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:maxLines="4"
-                android:layout_marginRight="5dp"
                 android:textSize="15sp"
                 tool:text="I am using Material design for my app. I followed the sample from androidhive.info/2015/09/… Tab scrollable is not working in Kitkat and Jelly bean devices. In lollipop i am able to scroll Tab but in other than lollipop devices Tab scrollable is not working but swipe is working fine. May i know what would be the problem" />
 
-            <ImageView
-                android:id="@+id/news_image"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:scaleType="centerCrop"
-                tool:src="@drawable/ic_launcher_background" />
+                android:elevation="50dp"
+                app:cardCornerRadius="12dp">
+
+                <ImageView
+                    android:id="@+id/news_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    tool:src="@drawable/ic_launcher_background" />
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 
@@ -66,12 +73,12 @@
             tool:text="Author" />
 
         <TextView
+            android:id="@+id/date_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tool:text="date and time"
-            android:textSize="12sp"
             android:padding="5dp"
-            android:id="@+id/date_view"/>
+            android:textSize="12sp"
+            tool:text="date and time" />
 
     </LinearLayout>
 
