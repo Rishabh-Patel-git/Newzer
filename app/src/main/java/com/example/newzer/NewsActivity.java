@@ -14,7 +14,7 @@ Toolbar mToolbar;
 ViewPager2 mViewPager2;
 TabLayout mTablayout;
 ViewPagerAdapter mAdapter;
-    String title[] = new String[]{"Home","Sports","Health","Education","Technology","Entertainment"};
+    String title[] = new String[]{"Home","Sports","Health","Science","Technology","Entertainment"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

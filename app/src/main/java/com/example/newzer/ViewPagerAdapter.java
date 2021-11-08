@@ -2,7 +2,6 @@ package com.example.newzer;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
@@ -10,7 +9,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 public class ViewPagerAdapter extends FragmentStateAdapter {
 
 
-        String title[] = new String[]{"Home","Entertainment","Sports","Health","Education","Technology"};
+    String title[] = new String[]{"Home", "Entertainment", "Sports", "Health", "Education", "Technology"};
 
     public ViewPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
@@ -19,19 +18,20 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        switch (position){
-            case 0 :
+        switch (position) {
+            case 0:
                 return new HomeFragment();
-            case 1 :
-                return new EntertainmentFragment();
-            case 2 :
+
+            case 1:
                 return new SportsFragment();
-            case 3:
+            case 2:
                 return new HealthFragment();
-            case 4 :
-                return new EducationFragment();
-            default:
+            case 3:
+                return new ScienceFragment();
+            case 4:
                 return new TechnologyFragment();
+            default:
+                return new EntertainmentFragment();
 
         }
     }

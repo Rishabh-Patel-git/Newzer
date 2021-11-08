@@ -15,13 +15,13 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
 
-public class EntertainmentFragment extends Fragment {
+public class ScienceFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerViewAdapter mAdapter;
     private SwipeRefreshLayout mSwipe;
     private ArrayList<NewsClass> mNews;
     private ProgressBar indicator;
-    private final String ENTERTAINMENT_URL = " https://newsapi.org/v2/top-headlines?country=in&category=entertainment&apiKey=98d961fbf71e4da4a4d72cc957d9cea0";
+    private final String SCIENCE_URL = " https://newsapi.org/v2/top-headlines?country=in&category=science&apiKey=98d961fbf71e4da4a4d72cc957d9cea0";
     private String s = "";
     @Nullable
     @Override
@@ -34,7 +34,7 @@ public class EntertainmentFragment extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
-        VolleyUtility.fetchData(getContext(), ENTERTAINMENT_URL, new VolleyUtility.VolleyOnEventListener() {
+        VolleyUtility.fetchData(getContext(), SCIENCE_URL, new VolleyUtility.VolleyOnEventListener() {
             @Override
             public void onSuccess(String response) {
 

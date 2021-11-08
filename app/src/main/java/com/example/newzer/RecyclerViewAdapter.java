@@ -18,16 +18,19 @@ import com.bumptech.glide.Glide;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.SimpleTimeZone;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
 
+    private List<NewsClass> newsList = new ArrayList<>();
+    private Context context;
 
-    List<NewsClass> newsList = new ArrayList<>();
-    Context context;
-    public RecyclerViewAdapter(Context context,ArrayList<NewsClass> list) {
+    public RecyclerViewAdapter(Context context, ArrayList<NewsClass> list) {
         this.context = context;
         this.newsList = list;
     }
@@ -36,7 +39,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.news_items,parent,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.news_items, parent, false);
         return new ViewHolder(v);
     }
 
@@ -51,11 +54,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             }
         });
         holder.mTitle.setText(current.getTitle());
-        holder.mAuthor.setText("By "+anonymous(current.getAuthor()));
-//        Glide.with(context)
-//                .load(current.getImageResourceId())
-//                .into(holder.mImage);
-        holder.mDescription.setText(current.getDescription());
+        holder.mAuthor.setText("By " + anonymous(current.getAuthor()));
+
+
+        if(current.getImageResourceId().contains("null")){
+            holder.mImage.setImageResource(R.drawable.placeholder);
+        }
+        else{
+        Glide.with(context)
+                .load(current.getImageResourceId())
+                .into(holder.mImage);
+        }
+        if(current.getDescription().contains("null")){
+            holder.mDescription.setText("Click to view news");
+        }else{
+        holder.mDescription.setText(current.getDescription());}
         holder.mDate.setText(current.getDate());
     }
 
@@ -63,15 +76,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public int getItemCount() {
         return newsList.size();
     }
-    private String anonymous(String s){
-        if(s.contains("null")){
+
+    private String anonymous(String s) {
+        if (s.contains("null")) {
             return "Anonymous";
-        }
-        else{
+        } else {
             return s;
         }
     }
+
+
+
+
     public class ViewHolder extends RecyclerView.ViewHolder {
+
+        TextView mAuthor, mTitle, mDescription, mDate;
+        ImageView mImage;
+        CardView mCard;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mAuthor = itemView.findViewById(R.id.author_view);
@@ -81,9 +103,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             mImage = itemView.findViewById(R.id.news_image);
             mCard = itemView.findViewById(R.id.card_view);
         }
-        TextView mAuthor, mTitle, mDescription, mDate;
-        ImageView mImage;
-        CardView mCard;
 
     }
 }

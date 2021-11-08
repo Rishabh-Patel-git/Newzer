@@ -6,51 +6,66 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
-    RecyclerView mRecyclerView;
-    RecyclerViewAdapter mAdapter;
-    ArrayList<NewsClass> mNews;
-    ProgressBar indicator;
-    private final String url = "https://content.guardianapis.com/search?page=10&api-key=1a667425-24fc-4ef0-a8e8-4d85fec302ae";
-    private static final String TAG = "MainActivity";
-    String s = "";
+    private RecyclerView mRecyclerView;
+    private RecyclerViewAdapter mAdapter;
+    private SwipeRefreshLayout mSwipe;
+    private ArrayList<NewsClass> mNews;
+    private ProgressBar indicator;
+    private final String HOME_URL = "https://newsapi.org/v2/top-headlines?country=in&apiKey=98d961fbf71e4da4a4d72cc957d9cea0";
+    private String s = "";
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_layout, container, false);
+
+
+        mSwipe = rootView.findViewById(R.id.swipe_refresh);
         indicator = rootView.findViewById(R.id.loading_indicator);
         indicator.setVisibility(View.VISIBLE);
         mRecyclerView = rootView.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        VolleyExtractor.fetchData(getContext(), url, new VolleyExtractor.VolleyOnEventListener() {
+
+        VolleyUtility.fetchData(getContext(), HOME_URL, new VolleyUtility.VolleyOnEventListener() {
             @Override
             public void onSuccess(String response) {
-                Log.d("ris", response);
 
-                mNews = VolleyExtractor.Utility(response);
+                mNews = VolleyUtility.jsonExtractor(response);
                 if (mNews != null) {
-                   // mNews.add(new NewsClass("au","ti","des","url","date"));
                     mAdapter = new RecyclerViewAdapter(getContext(), mNews);
                     mAdapter.notifyDataSetChanged();
                     indicator.setVisibility(View.GONE);
-
                     mRecyclerView.setAdapter(mAdapter);
                 }
+
+                mSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        mSwipe.setRefreshing(true);
+                        mNews = VolleyUtility.jsonExtractor(response);
+
+                        if (mNews != null) {
+                            mAdapter = new RecyclerViewAdapter(getContext(), mNews);
+                            mAdapter.notifyDataSetChanged();
+                            indicator.setVisibility(View.GONE);
+                            mRecyclerView.setAdapter(mAdapter);
+                        }
+                        mSwipe.setRefreshing(false);
+                    }
+                });
+
 
             }
 
@@ -59,7 +74,6 @@ public class HomeFragment extends Fragment {
 
             }
         });
-
 
 
         return rootView;
