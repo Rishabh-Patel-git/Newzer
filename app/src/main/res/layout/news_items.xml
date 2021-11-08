@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp"
+    android:id="@+id/card_view">
+
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title_view"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            tool:text="Title" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginTop="10dp"
+            android:padding="6dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/description_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="4"
+                android:layout_marginRight="5dp"
+                android:textSize="15sp"
+                tool:text="I am using Material design for my app. I followed the sample from androidhive.info/2015/09/… Tab scrollable is not working in Kitkat and Jelly bean devices. In lollipop i am able to scroll Tab but in other than lollipop devices Tab scrollable is not working but swipe is working fine. May i know what would be the problem" />
+
+            <ImageView
+                android:id="@+id/news_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                tool:src="@drawable/ic_launcher_background" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/author_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textSize="13sp"
+            tool:text="Author" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tool:text="date and time"
+            android:textSize="12sp"
+            android:padding="5dp"
+            android:id="@+id/date_view"/>
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>
