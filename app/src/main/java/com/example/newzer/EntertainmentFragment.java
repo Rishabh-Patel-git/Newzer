@@ -21,7 +21,8 @@ public class EntertainmentFragment extends Fragment {
     private SwipeRefreshLayout mSwipe;
     private ArrayList<NewsClass> mNews;
     private ProgressBar indicator;
-    private final String ENTERTAINMENT_URL = " https://newsapi.org/v2/top-headlines?country=in&category=entertainment&apiKey=98d961fbf71e4da4a4d72cc957d9cea0";
+    public static final  API_KEY = ""
+    private final String ENTERTAINMENT_URL = " https://newsapi.org/v2/top-headlines?country=in&category=entertainment&apiKey=" + API_KEY;
     private String s = "";
     @Nullable
     @Override
